@@ -1,10 +1,13 @@
 import React from "react";
 import styles from "./index.module.scss";
+import { useRouter } from "next/navigation";
 
 interface Props {
   stepActive: string;
 }
 const Stepper: React.FC<Props> = ({ stepActive }) => {
+  const router = useRouter();
+  const goBack = () => router.replace(stepActive === "2" ? "/plans" : "/");
   return (
     <>
       <div className={styles.slider}>
@@ -28,7 +31,7 @@ const Stepper: React.FC<Props> = ({ stepActive }) => {
         />
       </div>
       <div className={styles.sliderMobile}>
-        <div className={styles["sliderMobile__backButton"]}>
+        <div className={styles["sliderMobile__backButton"]} onClick={goBack}>
           {svgArrowLeft()}
         </div>
         <p>{stepActive === "1" ? "Paso 1 de 2" : "Paso 2 de 2"}</p>

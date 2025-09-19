@@ -23,7 +23,7 @@ const Plan: React.FC<Props> = ({
 
   const selectPlan = () => {
     dispatch({ type: ValueDispatch.selectPlan, value: plan });
-    router.replace("/resume");
+    router.push("/resume");
   };
 
   const { name, description: descriptions, price, priceDiscount } = plan;
