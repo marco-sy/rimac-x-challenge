@@ -1,0 +1,49 @@
+.header {
+  position: absolute;
+  width: 100%;
+  margin: auto;
+  &__container {
+    max-width: 1360px;
+    display: flex;
+    height: 64px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 120px;
+    margin: auto;
+
+    @media screen and (max-width: 768px) {
+      padding: 0px 24px;
+    }
+  }
+  & > img {
+    width: 73px;
+    height: auto;
+
+    @media screen and (max-width: 768px) {
+      width: 65px;
+    }
+  }
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-weight: bold;
+    & > p {
+      font-size: 12px;
+      font-weight: 500;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+    &--phone {
+      font-size: 16px;
+      display: flex;
+      font-weight: 700;
+      gap: 8px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.button {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &__primary {
+    border: 2px solid $gray1;
+    background-color: $gray1;
+    border-radius: 40px;
+    color: white;
+    transition: background-color 0.3s;
+    // &.loading {
+    //   background-color: var.$gray1;
+    // }
+    &:hover {
+      background-color: white;
+      color: $gray1;
+    }
+  }
+
+  &__secondary {
+    border: 2px solid $color-red5;
+    background-color: $color-red5;
+    border-radius: 40px;
+    color: white;
+    transition: background-color 0.3s;
+    // &.loading {
+    //   background-color: var.$gray1;
+    // }
+    &:hover {
+      background-color: white;
+      color: $color-red5;
+    }
+  }
+}

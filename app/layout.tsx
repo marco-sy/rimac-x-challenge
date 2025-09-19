@@ -1,15 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import localFont from "next/font/local";
+import NestedLayout from "@/components/NestedLayout";
+import "../styles/globals.scss";
+import GlobalProvider from "@/contexts/GlobalProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const fontBRSonoma = localFont({
+  src: [
+    {
+      path: "../public/fonts/BRSonoma-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/BRSonoma-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/BRSonoma-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -23,9 +36,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang="es">
+      <body className={fontBRSonoma.className}>
+        <GlobalProvider>
+          <NestedLayout>{children}</NestedLayout>
+        </GlobalProvider>
       </body>
     </html>
   );

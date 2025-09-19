@@ -1,0 +1,22 @@
+.button {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  p {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    color: $color-blueberry-600;
+  }
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid $color-blueberry-600;
+  border-radius: 50%;
+}
