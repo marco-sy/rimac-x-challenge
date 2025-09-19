@@ -6,7 +6,7 @@ export class UserApiRepository implements UserRepository {
     const response = new Promise((resolve, reject) =>
       setTimeout(() => {
         const { document, phone, type_document } = body;
-        if (document == "5666133" && phone == "918322123") {
+        if (document == "76661335" && phone == "918322123") {
           const response = {
             type_document,
             document,

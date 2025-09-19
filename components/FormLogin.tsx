@@ -15,8 +15,8 @@ import { ValueDispatch } from "@/lib/types";
 
 const INITIAL_VALUES = {
   type_document: "DNI",
-  document: "5666133",
-  phone: "918322123",
+  document: "",
+  phone: "",
   tyc_privacy: false,
   tyc_communication: false,
 };
