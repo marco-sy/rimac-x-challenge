@@ -13,7 +13,7 @@ const PageResume = () => {
     <div className={styles.container}>
       <Stepper stepActive="2" />
       <div className={styles.section}>
-        <BackButton />
+        <BackButton path="/plans" />
         <p>Resumen del seguro </p>
         <div className={styles["section__card"]}>
           <div className={styles["section__card--head"]}>

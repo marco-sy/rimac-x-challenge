@@ -23,8 +23,22 @@ const INITIAL_VALUES = {
 
 const schema = yup.object().shape({
   type_document: yup.string().required("*tipo requerido"),
-  document: yup.string().required("*Número de documento requerido"),
-  phone: yup.string().required("*Número de teléfono requerido"),
+  document: yup
+    .string()
+    .required("*Número de documento requerido")
+    .when("type_document", {
+      is: "DNI",
+      then: (schema: any) =>
+        schema
+          .matches(/^7/, "El primer caractér debe ser 7")
+          .matches(/\d{8}$/, "Debe tener 8 dígitos")
+          .required(),
+      otherwise: (schema) => schema.required(),
+    }),
+  phone: yup
+    .string()
+    .required("*Número de teléfono requerido")
+    .matches(/^9/, "El primer caractér debe ser 9"),
   tyc_privacy: yup.boolean().oneOf([true], "Aceptar tyc"),
   tyc_communication: yup.boolean().oneOf([true], "aceptar tyc"),
 });
@@ -47,10 +61,10 @@ const FormLogin = () => {
   const saveUser: SubmitHandler<any> = handleSubmit(async (data) => {
     try {
       setLoading(true);
+      setError("");
       const userResponse = await repository.loginUser(data);
       dispatch({ type: ValueDispatch.addUser, value: userResponse });
-      // localStorage.setItem("dataUser", JSON.stringify(data));
-      router.replace("/plans");
+      router.push("/plans");
     } catch {
       setError("Credenciales incorrectas");
     } finally {

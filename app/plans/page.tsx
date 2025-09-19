@@ -12,6 +12,7 @@ import { ValueDispatch } from "@/lib/types";
 import PlanComponent from "@/components/Plan";
 import { PlanDTO } from "@/application/dtos/plan-dto";
 import Stepper from "@/components/Stepper";
+import SkeletonPlan from "@/components/Plan/Skeleton";
 
 const PagePlans = () => {
   const { state, dispatch } = useGlobalContext();
@@ -49,7 +50,7 @@ const PagePlans = () => {
     <div className={styles.container}>
       <Stepper stepActive="1" />
       <div className={styles.section}>
-        <BackButton />
+        <BackButton path="/" />
         <div className={styles.plans}>
           <h1>Rocío ¿Para quién deseas cotizar?</h1>
           <p>Selecciona la opción que se ajuste más a tus necesidades.</p>
@@ -70,23 +71,22 @@ const PagePlans = () => {
             />
           </div>
         </div>
-        {loadingPlans ? (
-          <p>Loading...</p>
-        ) : (
-          <div className={styles["plans__list"]}>
-            {plans.map((plan, i) => {
-              const { name, price, description } = plan;
-              return (
-                <PlanComponent
-                  key={i}
-                  plan={plan}
-                  srcIcon="icon-plan-home.svg"
-                  recommended={i == 1 ? true : false}
-                />
-              );
-            })}
-          </div>
-        )}
+        <div className={styles["plans__list"]}>
+          {loadingPlans
+            ? Array(3)
+                .fill(0)
+                .map((_, i) => <SkeletonPlan key={i} />)
+            : plans.map((plan, i) => {
+                return (
+                  <PlanComponent
+                    key={i}
+                    plan={plan}
+                    srcIcon="icon-plan-home.svg"
+                    recommended={i == 1 ? true : false}
+                  />
+                );
+              })}
+        </div>
       </div>
     </div>
   );

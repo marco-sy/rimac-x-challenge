@@ -1,9 +1,16 @@
 import React from "react";
 import styles from "./index.module.scss";
+import { useRouter } from "next/navigation";
 
-const BackButton = () => {
+interface Props {
+  path: string;
+}
+const BackButton: React.FC<Props> = ({ path }) => {
+  const router = useRouter();
+  const goBack = () => router.replace(path);
+
   return (
-    <div className={styles.button}>
+    <div className={styles.button} onClick={goBack}>
       <div className={styles.circle}>
         <svg
           width="10"
